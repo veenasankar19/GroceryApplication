@@ -17,53 +17,44 @@ public class LoginTest extends TestNGBase {
 		String usernameValue=ExcelUtility.getStringData(1, 0, "LoginPage");  //Data Driven Approach to fetch data from Excel sheet
 		String passwordValue=ExcelUtility.getStringData(1, 1, "LoginPage");
 		
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
-		username.sendKeys(usernameValue);
-		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
-		password.sendKeys(passwordValue);
-		WebElement login = driver.findElement(By.xpath("//button[@type='submit']"));
-		login.click();
-
+		LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
+		loginpage.enterUserName(usernameValue);
+		loginpage.enterPassword(passwordValue);
+		loginpage.clickOnSignin();
 
 	}
-//Give invalid username and valid password -- Valid Credentials	
-	@Test(priority = 2)
+//Give invalid username and valid password -- Invalid Credentials	
+	@Test(priority = 2,description = "Login with invalid username and valid password")
 	public void verifyLoginWithInvalidUsername() throws IOException {
 		String usernameValue=ExcelUtility.getStringData(2, 0, "LoginPage");  //Data Driven Approach to fetch data from Excel sheet
 		String passwordValue=ExcelUtility.getStringData(2, 1, "LoginPage");
 		
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
-		username.sendKeys(usernameValue);
-		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
-		password.sendKeys(passwordValue);
-		WebElement login = driver.findElement(By.xpath("//button[@type='submit']"));
-		login.click();
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUserName(usernameValue);
+		loginpage.enterPassword(passwordValue);
+		loginpage.clickOnSignin();
 	}
 //Give valid username and invalid password - Invalid Credentials
-	@Test (priority = 3)
+	@Test (priority = 3,description="Login with valid username and invalid password")
 	public void verifyLoginWithInvalidPassword() throws IOException {
 		String usernameValue=ExcelUtility.getStringData(3, 0, "LoginPage");  //Data Driven Approach to fetch data from Excel sheet
 		String passwordValue=ExcelUtility.getStringData(3, 1, "LoginPage");
 		
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
-		username.sendKeys(usernameValue);
-		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
-		password.sendKeys(passwordValue);
-		WebElement login = driver.findElement(By.xpath("//button[@type='submit']"));
-		login.click();
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUserName(usernameValue);
+		loginpage.enterPassword(passwordValue);
+		loginpage.clickOnSignin();
 	}
 //Give invalid username and invalid password - Invalid Credentials
-	@Test  (priority = 4)
+	@Test  (priority = 4,description="Login with invalid username and invalid password")
 	public void verifyLoginWithInvalidUsernamePassword() throws IOException {
 		String usernameValue=ExcelUtility.getStringData(4, 0, "LoginPage");  //Data Driven Approach to fetch data from Excel sheet
 		String passwordValue=ExcelUtility.getStringData(4, 1, "LoginPage");
 		
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
-		username.sendKeys(usernameValue);
-		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
-		password.sendKeys(passwordValue);
-		WebElement login = driver.findElement(By.xpath("//button[@type='submit']"));
-		login.click();
+		LoginPage loginpage = new LoginPage(driver);
+		loginpage.enterUserName(usernameValue);
+		loginpage.enterPassword(passwordValue);
+		loginpage.clickOnSignin();
 	}
 	
 }

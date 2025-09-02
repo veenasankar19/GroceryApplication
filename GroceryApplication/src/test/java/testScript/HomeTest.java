@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import Base.TestNGBase;
+import Pages.HomePage;
 import Pages.LoginPage;
 import utilities.ExcelUtility;
 
@@ -17,18 +18,14 @@ public class HomeTest extends TestNGBase {
 		String usernameValue=ExcelUtility.getStringData(1, 0, "LoginPage");  //Data Driven Approach to fetch data from Excel sheet
 		String passwordValue=ExcelUtility.getStringData(1, 1, "LoginPage");
 		
-		WebElement username = driver.findElement(By.xpath("//input[@name='username']"));
-		username.sendKeys(usernameValue);
-		WebElement password = driver.findElement(By.xpath("//input[@name='password']"));
-		password.sendKeys(passwordValue);
-		WebElement login = driver.findElement(By.xpath("//button[@type='submit']"));
-		login.click();
+		LoginPage loginpage = new LoginPage(driver);  //Page Object Model approach. The code is moved from here to src/main/java--LoginPage
+		loginpage.enterUserName(usernameValue);
+		loginpage.enterPassword(passwordValue);
+		loginpage.clickOnSignin();
 
-//for logging out
-		WebElement adminIcon = driver.findElement(By.xpath("//img[@src='https://groceryapp.uniqassosiates.com/public/assets/admin/dist/img/avatar5.png']"));
-		adminIcon.click();
-		WebElement logOut = driver.findElement(By.xpath("//i[@class='ace-icon fa fa-power-off']"));
-		logOut.click();
+		HomePage homepage = new HomePage(driver); //Page Object Model approach. The code is moved from here to src/main/java--HomePage
+		homepage.clickAdminIcon();
+		homepage.clickLogOut();
 		
 	}
 
