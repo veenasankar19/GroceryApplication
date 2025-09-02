@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.project</groupId>
+  <artifactId>GroceryApplication</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+<!-- Dependency is added for accessing third party application Selenium below -->
+  <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.33.0</version>
+    </dependency>
+<!-- Dependency is added for accessing third party application TestNG below -->
+    <dependency> 
+    <groupId>org.testng</groupId> 
+    <artifactId>testng</artifactId>
+    <version>7.10.2</version>
+    <scope>test</scope>
+</dependency>
+<!-- Dependency is added for accessing third party application Microsoft Office document like Word and Excel -->
+<!-- poi gives you support for HSSF (older Excel .xls files) -->
+<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi</artifactId>
+    <version>5.2.5</version>
+</dependency>
+<!-- poi-ooxml gives you support for XSSF (newer Excel .xlsx files), DOCX, and PPTX -->
+<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>5.2.5</version>
+</dependency>
+<!-- Faker class is used for random data generation -->
+<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>0.15</version>
+		</dependency>
+  </dependencies>
+</project>
