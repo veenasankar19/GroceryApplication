@@ -1,5 +1,7 @@
 package testScript;
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
@@ -9,14 +11,15 @@ import org.testng.annotations.Test;
 import Base.TestNGBase;
 import Pages.LoginPage;
 import Pages.ManageNewsPage;
+import constant.Constants;
 import utilities.ExcelUtility;
 
 public class ManageNewsTest extends TestNGBase{
 //TestCase5 to navigate to Manage News page, click on New button and perform related actions 
-	@Test 
+	@Test (description = "Verify Add News")
 	public void verifyAddNews() throws IOException {
-		String usernameValue=ExcelUtility.getStringData(6, 0, "LoginPage");  //Data Driven Approach to fetch data from Excel sheet
-		String passwordValue=ExcelUtility.getStringData(6, 1, "LoginPage");
+		String usernameValue=ExcelUtility.getStringData(6, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet and Path&Sheetname from Constants class
+		String passwordValue=ExcelUtility.getStringData(6, 1, Constants.LOGINSHEET);
 	
 		LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
 		loginpage.enterUserName(usernameValue);
@@ -28,12 +31,15 @@ public class ManageNewsTest extends TestNGBase{
 		managenewspage.clickNewbutton();
 		managenewspage.enterNewsTextbox();
 		managenewspage.clickSaveButton();
+//Adding Assertion		
+		boolean isaddnewsAlertDisplayed = managenewspage.isAddNewsAlertDisplayed();
+		Assert.assertTrue(isaddnewsAlertDisplayed, "User fails to add new News");
 	}
 //TestCase6 to navigate to Manage News page, click on Search button
-	@Test 
+	@Test (description = "Verify Search button in Search section")
 	public void verifySearchNewsSearchButton() throws IOException {
-		String usernameValue=ExcelUtility.getStringData(6, 0, "LoginPage");  //Data Driven Approach to fetch data from Excel sheet
-		String passwordValue=ExcelUtility.getStringData(6, 1, "LoginPage");
+		String usernameValue=ExcelUtility.getStringData(6, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet
+		String passwordValue=ExcelUtility.getStringData(6, 1, Constants.LOGINSHEET);
 	
 		LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
 		loginpage.enterUserName(usernameValue);
@@ -42,15 +48,20 @@ public class ManageNewsTest extends TestNGBase{
  		
 		ManageNewsPage managenewspage = new ManageNewsPage(driver);
 		managenewspage.clickManageNewsTile();
-		managenewspage.clickSearchButton();
+		managenewspage.clickSearchButtonBlue();
 		managenewspage.enterNewsTextboxInsideSearch();
 		managenewspage.clickSearchButtonRed();
+//Adding Assertion	
+		String actual = managenewspage.isSearchedNewsFoundinTable();
+		String expected = "This is an updated news";
+		Assert.assertEquals(actual, expected, "User fails to find the searched news item.");
+		
 	}
 //TestCase7 to navigate to Manage News page, click on Reset button
-		@Test 
+		@Test (description = "Verify Reset button in Search section")
 		public void verifySearchNewsResetButton() throws IOException {
-			String usernameValue=ExcelUtility.getStringData(6, 0, "LoginPage");  //Data Driven Approach to fetch data from Excel sheet
-			String passwordValue=ExcelUtility.getStringData(6, 1, "LoginPage");
+			String usernameValue=ExcelUtility.getStringData(6, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet
+			String passwordValue=ExcelUtility.getStringData(6, 1, Constants.LOGINSHEET);
 		
 			LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
 			loginpage.enterUserName(usernameValue);
@@ -59,16 +70,19 @@ public class ManageNewsTest extends TestNGBase{
 	 		
 			ManageNewsPage managenewspage = new ManageNewsPage(driver);
 			managenewspage.clickManageNewsTile();
-			managenewspage.clickSearchButton();
+			managenewspage.clickSearchButtonBlue();
 			managenewspage.enterNewsTextboxInsideSearch();
 			managenewspage.clickResetButtonGrey();
+	//Adding Assertion	
+			boolean iseditManageNewsInformations = managenewspage.isEditManageNewsInformations();
+			Assert.assertFalse(iseditManageNewsInformations, "User fails to reset the news item");
 		}
 	
 //TestCase8 to navigate to Manage News page, click on Home link	
-	@Test
+	@Test (description = "Verify Home link")
 	public void verifyHomeLink() throws IOException {
-		String usernameValue=ExcelUtility.getStringData(6, 0, "LoginPage");  //Data Driven Approach to fetch data from Excel sheet
-		String passwordValue=ExcelUtility.getStringData(6, 1, "LoginPage");
+		String usernameValue=ExcelUtility.getStringData(6, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet
+		String passwordValue=ExcelUtility.getStringData(6, 1, Constants.LOGINSHEET);
 	
 		LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
 		loginpage.enterUserName(usernameValue);
@@ -78,6 +92,10 @@ public class ManageNewsTest extends TestNGBase{
 		ManageNewsPage managenewspage = new ManageNewsPage(driver);
 		managenewspage.clickManageNewsTile();
 		managenewspage.clickHomeLink();
+//Adding Assertion			
+		String actual = driver.getCurrentUrl();
+		String expected = "https://groceryapp.uniqassosiates.com/admin/home";
+		Assert.assertEquals(actual, expected, "User fails to navigate to Home Page by clicking Home link");
 	}
 
 }

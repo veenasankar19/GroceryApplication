@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import constant.Constants;
+
 public class ExcelUtility {
 	
 
@@ -21,7 +23,7 @@ public class ExcelUtility {
 
 		{
 
-		f=new FileInputStream("C:\\Users\\VEENA S\\eclipse-workspace\\GroceryApplication\\src\\test\\resources\\TestData_Project_Login.xlsx");
+		f=new FileInputStream(Constants.TESTDATAFILE); //Path is saved in package constant and class Constants
 
 		w=new XSSFWorkbook(f);
 
@@ -37,7 +39,7 @@ public class ExcelUtility {
 
 		public static String getIntegerData(int a,int b,String sheet) throws IOException {
 
-		f=new FileInputStream("C:\\Users\\VEENA S\\eclipse-workspace\\GroceryApplication\\src\\test\\resources\\TestData_Project_Login.xlsx");
+		f=new FileInputStream(Constants.TESTDATAFILE); //Path is saved in package constant and class Constants
 		
 		w=new XSSFWorkbook(f);
 
