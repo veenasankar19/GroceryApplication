@@ -14,6 +14,7 @@ import Base.TestNGBase;
 import Pages.AdminPage;
 import Pages.LoginPage;
 import constant.Constants;
+import constant.Messages;
 import utilities.ExcelUtility;
 import utilities.FakerUtility;
 
@@ -44,7 +45,7 @@ public class AdminTest extends TestNGBase {
 		adminpage.chooseUserType(userType);
 		adminpage.clickSaveButton();
 		boolean isalertDisplayed = adminpage.isAlertDisplayed(); //Always start the boolean variable name with "is". Here it is "isalertDisplayed"
-		Assert.assertTrue(isalertDisplayed, "User is not added successfully."); //this message is displayed when testcase fails
+		Assert.assertTrue(isalertDisplayed, Messages.ADDUSERFUNCTIONALITYERROR); //this message is displayed when testcase fails. Message is added in Messages class.
 	}
 
 }

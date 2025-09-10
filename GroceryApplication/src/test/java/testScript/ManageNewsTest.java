@@ -12,6 +12,7 @@ import Base.TestNGBase;
 import Pages.LoginPage;
 import Pages.ManageNewsPage;
 import constant.Constants;
+import constant.Messages;
 import utilities.ExcelUtility;
 
 public class ManageNewsTest extends TestNGBase{
@@ -33,7 +34,7 @@ public class ManageNewsTest extends TestNGBase{
 		managenewspage.clickSaveButton();
 //Adding Assertion		
 		boolean isaddnewsAlertDisplayed = managenewspage.isAddNewsAlertDisplayed();
-		Assert.assertTrue(isaddnewsAlertDisplayed, "User fails to add new News");
+		Assert.assertTrue(isaddnewsAlertDisplayed, Messages.ADDNEWSERROR); //Message is added in Messages class
 	}
 //TestCase6 to navigate to Manage News page, click on Search button
 	@Test (description = "Verify Search button in Search section")
@@ -54,7 +55,7 @@ public class ManageNewsTest extends TestNGBase{
 //Adding Assertion	
 		String actual = managenewspage.isSearchedNewsFoundinTable();
 		String expected = "This is an updated news";
-		Assert.assertEquals(actual, expected, "User fails to find the searched news item.");
+		Assert.assertEquals(actual, expected, Messages.SEARCHINSEARCHSECTIONERROR);
 		
 	}
 //TestCase7 to navigate to Manage News page, click on Reset button
@@ -73,9 +74,9 @@ public class ManageNewsTest extends TestNGBase{
 			managenewspage.clickSearchButtonBlue();
 			managenewspage.enterNewsTextboxInsideSearch();
 			managenewspage.clickResetButtonGrey();
-	//Adding Assertion	
-			boolean iseditManageNewsInformations = managenewspage.isEditManageNewsInformations();
-			Assert.assertFalse(iseditManageNewsInformations, "User fails to reset the news item");
+//Adding Assertion	
+			boolean iseditManageNewsInformations = managenewspage.isSearchManageNews();
+			Assert.assertFalse(iseditManageNewsInformations, Messages.RESETINSEARCHSECTIONERROR);
 		}
 	
 //TestCase8 to navigate to Manage News page, click on Home link	
@@ -95,7 +96,7 @@ public class ManageNewsTest extends TestNGBase{
 //Adding Assertion			
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/home";
-		Assert.assertEquals(actual, expected, "User fails to navigate to Home Page by clicking Home link");
+		Assert.assertEquals(actual, expected, Messages.HOMELINKERROR);
 	}
 
 }

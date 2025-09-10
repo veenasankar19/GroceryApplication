@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import Base.TestNGBase; //imported TestNGBase because it is created in a different package
 import Pages.LoginPage;
 import constant.Constants;
+import constant.Messages;
 import utilities.ExcelUtility;  //updated on moving "ExcelUtility" class from package "testScript" in src test to "utilities" in src main
 
 public class LoginTest extends TestNGBase {
@@ -28,7 +29,7 @@ public class LoginTest extends TestNGBase {
 //For assertion when the login action fails		
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin";
-		Assert.assertEquals(actual, expected, "Login is not successful with valid credentials.");
+		Assert.assertEquals(actual, expected, Messages.VALIDCREDENTIALSERROR); //Taken from Messages class of Constant package
 	}
 //Give valid username and invalid password -- Invalid Credentials	
 	@Test(priority = 2,description = "Login with valid username and invalid password")
@@ -40,8 +41,9 @@ public class LoginTest extends TestNGBase {
 		loginpage.enterUserName(usernameValue);
 		loginpage.enterPassword(passwordValue);
 		loginpage.clickOnSignin();
+//Below Assertion can be done same as above also. With expected = "https://groceryapp.uniqassosiates.com/admin/login"
 		boolean isloginalertDisplayed = loginpage.isLoginAlertDisplayed();
-		Assert.assertTrue(isloginalertDisplayed, "Valid Username Invalid Password functionality failed.");
+		Assert.assertTrue(isloginalertDisplayed, Messages.INVALIDPASSWORDERROR);
 	}
 //Give invalid username and valid password - Invalid Credentials
 	@Test (priority = 3,description="Login with invalid username and valid password")
@@ -54,7 +56,7 @@ public class LoginTest extends TestNGBase {
 		loginpage.enterPassword(passwordValue);
 		loginpage.clickOnSignin();
 		boolean isloginalertDisplayed = loginpage.isLoginAlertDisplayed();
-		Assert.assertTrue(isloginalertDisplayed, "Invalid Username Valid Password functionality failed.");		
+		Assert.assertTrue(isloginalertDisplayed, Messages.INVALIDUSERNAMEERROR);		
 	}
 //Give invalid username and invalid password - Invalid Credentials
 	@Test  (priority = 4,description="Login with invalid username and invalid password")
@@ -67,7 +69,7 @@ public class LoginTest extends TestNGBase {
 		loginpage.enterPassword(passwordValue);
 		loginpage.clickOnSignin();
 		boolean isloginalertDisplayed = loginpage.isLoginAlertDisplayed();
-		Assert.assertTrue(isloginalertDisplayed, "Invalid Username Invalid Password functionality failed.");
+		Assert.assertTrue(isloginalertDisplayed, Messages.INVALIDCREDENTIALSERROR);
 	}
 	
 }

@@ -12,6 +12,7 @@ import Base.TestNGBase;
 import Pages.HomePage;
 import Pages.LoginPage;
 import constant.Constants;
+import constant.Messages;
 import utilities.ExcelUtility;
 
 public class HomeTest extends TestNGBase {
@@ -32,6 +33,6 @@ public class HomeTest extends TestNGBase {
 //For assertion when the logout action fails
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/login";
-		Assert.assertEquals(actual, expected, "LogOut action is not successful.");
+		Assert.assertEquals(actual, expected, Messages.LOGOUTFUNCTIONALITYERROR); //Message is added in Messages Class
 	}
 }

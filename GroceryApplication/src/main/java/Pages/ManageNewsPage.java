@@ -66,10 +66,10 @@ public ManageNewsPage (WebDriver driver){
 		//WebElement firstValueofTable = driver.findElement(By.xpath("//table[@class='table table-bordered table-hover table-sm']/tbody/tr[1]/td[1]"));
 		return firstValueofTable.getText();
 	}
-	@FindBy(xpath = "//form[@role='form']") WebElement editmanagenews;
-	public boolean isEditManageNewsInformations() {
-		//WebElement editmanagenews = driver.findElement(By.xpath("//form[@role='form']"));
-		return editmanagenews.isDisplayed();
+	@FindBy(xpath = "//form[@role='form']") WebElement searchmanagenews;
+	public boolean isSearchManageNews() {
+		//WebElement searchmanagenews = driver.findElement(By.xpath("//form[@role='form']"));
+		return searchmanagenews.isDisplayed();
 	}
 
 }
