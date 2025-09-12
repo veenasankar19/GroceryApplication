@@ -8,8 +8,9 @@
  </listeners>
   <test thread-count="5" name="Test">
     <classes>
-      <class name="testScript.HomeTest"/> <!-- HomeTest will be executed first when we run testng.xml-->
-      <class name="testScript.ManageNewsTest"/>
+    <!-- HomeTest will be executed first when we run testng.xml-->
+      <class name="testScript.HomeTest"/> 
+      <class name="testScript.ManageNewsTest"/> 
       <class name="testScript.LoginTest"/>
       <class name="testScript.AdminTest"/>
     </classes>

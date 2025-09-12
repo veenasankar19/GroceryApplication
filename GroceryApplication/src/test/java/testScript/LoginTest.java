@@ -17,7 +17,7 @@ import utilities.ExcelUtility;  //updated on moving "ExcelUtility" class from pa
 
 public class LoginTest extends TestNGBase {
 //Give username and password as admin -- Valid Credentials
-	@Test (priority = 1,description = "Login with valid credentials of user admin")
+	@Test (priority = 1,description = "Login with valid credentials of user admin", retryAnalyzer = retry.Retry.class) //retryAnalyzer is given for flaky testcases to retry it. To test, we can give the row index as 3 instead of 1 below. 
 	public void verifyLoginWithValidCredentials() throws IOException {
 		String usernameValue=ExcelUtility.getStringData(1, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet
 		String passwordValue=ExcelUtility.getStringData(1, 1, Constants.LOGINSHEET);

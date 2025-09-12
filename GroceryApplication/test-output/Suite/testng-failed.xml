@@ -6,33 +6,14 @@
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="testScript.ManageNewsTest">
+      <class name="testScript.LoginTest">
         <methods>
-          <include name="verifySearchNewsSearchButton"/>
           <include name="quitAndClose"/>
-          <include name="verifySearchNewsResetButton"/>
-          <include name="verifyAddNews"/>
-          <include name="verifyHomeLink"/>
+          <include name="verifyLoginWithValidCredentials"/>
           <include name="browserInitializer"/>
           <include name="driverQuit"/>
         </methods>
-      </class> <!-- testScript.ManageNewsTest -->
-      <class name="testScript.AdminTest">
-        <methods>
-          <include name="quitAndClose"/>
-          <include name="verifyAddUser"/>
-          <include name="browserInitializer"/>
-          <include name="driverQuit"/>
-        </methods>
-      </class> <!-- testScript.AdminTest -->
-      <class name="testScript.HomeTest">
-        <methods>
-          <include name="verifyLogOut"/>
-          <include name="quitAndClose"/>
-          <include name="browserInitializer"/>
-          <include name="driverQuit"/>
-        </methods>
-      </class> <!-- testScript.HomeTest -->
+      </class> <!-- testScript.LoginTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

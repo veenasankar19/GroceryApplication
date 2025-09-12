@@ -1,6 +1,7 @@
 package Base;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ public class TestNGBase {
 		
 		driver.get("https://groceryapp.uniqassosiates.com/admin/login");
 		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); //Wait 5seconds to identify all elements for all testcases where @FindBy elements are not identified (Instead of giving error "No such element found") due to cases likes slow network.
 	}
 	@AfterMethod
 	public void quitAndClose() {
