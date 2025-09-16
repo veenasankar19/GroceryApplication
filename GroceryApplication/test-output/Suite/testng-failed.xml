@@ -10,11 +10,24 @@
       <class name="testScript.LoginTest">
         <methods>
           <include name="quitAndClose"/>
-          <include name="verifyLoginWithInvalidUsernamePassword"/>
+          <include name="verifyLoginWithInvalidUsernamePassword" invocation-numbers="0 1 2"/>
           <include name="browserInitializer"/>
           <include name="driverQuit"/>
         </methods>
       </class> <!-- testScript.LoginTest -->
     </classes>
   </test> <!-- Test(failed) -->
+  <test thread-count="5" name="FirefoxTest(failed)">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="testScript.LoginTest">
+        <methods>
+          <include name="verifyLoginWithInvalidUsernamePassword" invocation-numbers="0 1 2"/>
+          <include name="quitAndClose"/>
+          <include name="browserInitializer"/>
+          <include name="driverQuit"/>
+        </methods>
+      </class> <!-- testScript.LoginTest -->
+    </classes>
+  </test> <!-- FirefoxTest(failed) -->
 </suite> <!-- Failed suite [Suite] -->

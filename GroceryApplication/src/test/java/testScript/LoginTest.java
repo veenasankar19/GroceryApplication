@@ -33,7 +33,7 @@ public class LoginTest extends TestNGBase {
 		Assert.assertEquals(actual, expected, Messages.VALIDCREDENTIALSERROR); //Taken from Messages class of Constant package
 	}
 //Give valid username and invalid password -- Invalid Credentials	
-	@Test(priority = 2,description = "Login with valid username and invalid password")
+	@Test(priority = 2,description = "Login with valid username and invalid password", groups = {"smoke"})
 	public void verifyLoginWithInvalidUsername() throws IOException {
 		String usernameValue=ExcelUtility.getStringData(2, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet
 		String passwordValue=ExcelUtility.getStringData(2, 1, Constants.LOGINSHEET);

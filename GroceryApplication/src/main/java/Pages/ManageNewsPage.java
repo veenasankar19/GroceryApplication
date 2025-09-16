@@ -29,7 +29,7 @@ public ManageNewsPage (WebDriver driver){
 	public void enterNewsTextbox() {
 		//WebElement newstextbox = driver.findElement(By.xpath("//textarea[@id='news']"));
 		//newstextbox.sendKeys("Sample News");
-		pageutility.sendDataToElement(newstextbox, null); //sendDataToElement is the name in PageUtility class. null is added bcz of no parameter
+		pageutility.sendDataToElement(newstextbox, "Sample News"); //sendDataToElement is the name in PageUtility class. null is added bcz of no parameter
 	}
 	@FindBy(xpath = "//button[@name='create']") WebElement savebutton;
 	public void clickSaveButton() {
@@ -47,7 +47,7 @@ public ManageNewsPage (WebDriver driver){
 	public void enterNewsTextboxInsideSearch() {
 		//WebElement searchtextbox = driver.findElement(By.xpath("//input[@class='form-control']"));
 		//searchtextbox.sendKeys("Test");
-		pageutility.sendDataToElement(searchtextbox, null);
+		pageutility.sendDataToElement(searchtextbox, "Test");
 	}
 	@FindBy(xpath = "//button[@class='btn btn-danger btn-fix']") WebElement searchbuttonred;
 	public void clickSearchButtonRed() {

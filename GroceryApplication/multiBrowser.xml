@@ -16,10 +16,6 @@
       <class name="testScript.LoginTest">
       <!-- To run a single testcase in a class after adding in testng, methods tag with include tag is used-->
       <!-- To exclude a single testcase in a class after adding in testng, methods tag with exclude tag is used-->
-      <methods>  
-      <include name="verifyLoginWithInvalidUsernamePassword"></include> 
-      <!--<exclude name=""></exclude>-->
-      </methods>
       </class>
      <!-- <class name="testScript.AdminTest"/>-->
     </classes>
@@ -34,10 +30,6 @@
       <class name="testScript.LoginTest">
       <!-- To run a single testcase in a class after adding in testng, methods tag with include tag is used-->
       <!-- To exclude a single testcase in a class after adding in testng, methods tag with exclude tag is used-->
-      <methods>  
-      <include name="verifyLoginWithInvalidUsernamePassword"></include> 
-      <!--<exclude name=""></exclude>-->
-      </methods>
       </class>
      <!-- <class name="testScript.AdminTest"/>-->
     </classes>

@@ -6,4 +6,5 @@ public class Constants {
 	public static final String TESTDATAFILE = System.getProperty("user.dir")+ "\\src\\test\\resources\\TestData_Project_Login.xlsx";
 	public static final String LOGINSHEET = "LoginPage"; //Sheetname of excel utility is "LoginPage". LOGINSHEET is the static final (to avoid changing it anywhere else) variable.
 	public static final String HOMESHEET = "HomePage";
+	public static final String CONFIGFILE=System.getProperty("user.dir")+"\\src\\main\\resources\\config.properties"; //For config class in src main resources and testNGBase
 }
