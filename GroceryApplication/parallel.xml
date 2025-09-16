@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="parallel" parallel="methods"> <!--parallel testing with method level-->
+<!--For generating report when the testcases are executed-->
+<listeners>
+ <listener class-name="reportGeneration.Listener">
+ </listener>
+ </listeners>
+   <!--For Chrome Browser with Resource 1-->
+   <parameter name="browser" value="chrome"></parameter> <!--Parameterization-->
+   <!-- 2 test tags below are executed simultaneously. Similar to Load Testing-->
+  <test thread-count="5" name="Test"> <!--5 classes can be executed simultaneously by default-->
+    <classes>
+    <!-- HomeTest will be executed first when we run testng.xml-->
+     <!-- <class name="testScript.HomeTest"/> -->
+      <!-- <class name="testScript.ManageNewsTest"/> -->
+      <class name="testScript.LoginTest">
+      <!-- To run a single testcase in a class after adding in testng, methods tag with include tag is used-->
+      <!-- To exclude a single testcase in a class after adding in testng, methods tag with exclude tag is used-->
+      <methods>  
+      <include name="verifyLoginWithInvalidUsernamePassword"></include> 
+      <!--<exclude name=""></exclude>-->
+      </methods>
+      </class>
+     <!-- <class name="testScript.AdminTest"/>-->
+    </classes>
+  </test> <!-- Test -->
+  <!--For resource number 2 to test-->
+  <test thread-count="5" name="Test2"> <!--5 classes can be executed simultaneously by default-->
+    <classes>
+    <!-- HomeTest will be executed first when we run testng.xml-->
+     <!-- <class name="testScript.HomeTest"/> -->
+      <!-- <class name="testScript.ManageNewsTest"/> -->
+      <class name="testScript.LoginTest">
+      <!-- To run a single testcase in a class after adding in testng, methods tag with include tag is used-->
+      <!-- To exclude a single testcase in a class after adding in testng, methods tag with exclude tag is used-->
+      <methods>  
+      <include name="verifyLoginWithInvalidUsernamePassword"></include> 
+      <!--<exclude name=""></exclude>-->
+      </methods>
+      </class>
+     <!-- <class name="testScript.AdminTest"/>-->
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

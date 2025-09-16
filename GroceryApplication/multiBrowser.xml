@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite">
+<suite name="parallel" parallel="methods">
 <!--For generating report when the testcases are executed-->
 <listeners>
  <listener class-name="reportGeneration.Listener">
  </listener>
  </listeners>
+   <!--Test for For Chrome Browser-->
   <test thread-count="5" name="Test"> <!--5 classes can be executed simultaneously by default-->
   <parameter name="browser" value="chrome"></parameter> <!--Parameterization-->
+    <classes>
+    <!-- HomeTest will be executed first when we run testng.xml-->
+     <!-- <class name="testScript.HomeTest"/> -->
+      <!-- <class name="testScript.ManageNewsTest"/> -->
+      <class name="testScript.LoginTest">
+      <!-- To run a single testcase in a class after adding in testng, methods tag with include tag is used-->
+      <!-- To exclude a single testcase in a class after adding in testng, methods tag with exclude tag is used-->
+      <methods>  
+      <include name="verifyLoginWithInvalidUsernamePassword"></include> 
+      <!--<exclude name=""></exclude>-->
+      </methods>
+      </class>
+     <!-- <class name="testScript.AdminTest"/>-->
+    </classes>
+  </test> <!-- Test -->
+  <!--FirefoxTest for FireFox Browser running parallely with Test in Chrome Browser-->
+  <test thread-count="5" name="FirefoxTest"> <!--5 classes can be executed simultaneously by default-->
+  <parameter name="browser" value="firefox"></parameter> <!--Parameterization-->
     <classes>
     <!-- HomeTest will be executed first when we run testng.xml-->
      <!-- <class name="testScript.HomeTest"/> -->

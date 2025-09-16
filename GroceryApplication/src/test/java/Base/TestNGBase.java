@@ -12,24 +12,31 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import utilities.ScreenShotUtility;
 
 public class TestNGBase {
 	public WebDriver driver;
 	
-	@BeforeMethod
-	public void browserInitializer() {
+	@BeforeMethod (alwaysRun = true)
+	@Parameters("browser") //"browser"-same as parameter name in testng
+	public void browserInitializer(String browser) throws Exception { //Give any variable name with String datatype, here it is "browser"
 		//driver = new FirefoxDriver();
-		//ChromeOptions` allows you to customize how Chrome starts — such as setting preferences, enabling headless mode, disabling extensions, password leak detection etc.
-		ChromeOptions options = new ChromeOptions();
-		//Create a map that has the key as password leak detection, and value to be false so that leak detect is turned off while launching browser.
-		Map<String, Object> prefs = new HashMap<String, Object>();
-		prefs.put("profile.password_manager_leak_detection", false);
-		//Set the above pref as "Experimental option" so that it is reflected in user preferences
-		options.setExperimentalOption("prefs", prefs);
-		//Launch the driver with customized preference with "options"
-		driver = new ChromeDriver(options);
+		if(browser.equalsIgnoreCase("Chrome")) { //for Chrome browser if browser value in testng is "Chrome"
+			//driver=new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			Map<String,Object> prefs=new HashMap<>();
+			prefs.put("profile.password_manager_leak_detection", false);
+			options.setExperimentalOption("prefs", prefs);
+			driver=new ChromeDriver(options);
+		}
+		else if(browser.equalsIgnoreCase("Firefox")) { //for Firefox if browser value in testng is "Chrome"
+			driver=new FirefoxDriver();
+		}
+else {
+			throw new Exception("Invalid browser name"); //if the browser is not Chrome and Firefox
+		}
 		
 		driver.get("https://groceryapp.uniqassosiates.com/admin/login");
 		driver.manage().window().maximize();

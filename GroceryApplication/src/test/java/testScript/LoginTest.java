@@ -1,5 +1,6 @@
 package testScript;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 import java.io.IOException;
@@ -59,10 +60,10 @@ public class LoginTest extends TestNGBase {
 		Assert.assertTrue(isloginalertDisplayed, Messages.INVALIDUSERNAMEERROR);		
 	}
 //Give invalid username and invalid password - Invalid Credentials
-	@Test  (priority = 4,description="Login with invalid username and invalid password")
-	public void verifyLoginWithInvalidUsernamePassword() throws IOException {
-		String usernameValue=ExcelUtility.getStringData(4, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet
-		String passwordValue=ExcelUtility.getStringData(4, 1, Constants.LOGINSHEET);
+	@Test  (priority = 4,description="Login with invalid username and invalid password", dataProvider = "loginProvider") //dataProvider Conjunction is used to test this testcase multiple times with different combinations of username and password which is not possible with excel read.
+	public void verifyLoginWithInvalidUsernamePassword(String usernameValue, String passwordValue) throws IOException { //String parameters to fetch data from dataprovider
+		//String usernameValue=ExcelUtility.getStringData(4, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet
+		//String passwordValue=ExcelUtility.getStringData(4, 1, Constants.LOGINSHEET);
 		
 		LoginPage loginpage = new LoginPage(driver);
 		loginpage.enterUserName(usernameValue);
@@ -70,6 +71,14 @@ public class LoginTest extends TestNGBase {
 		loginpage.clickOnSignin();
 		boolean isloginalertDisplayed = loginpage.isLoginAlertDisplayed();
 		Assert.assertTrue(isloginalertDisplayed, Messages.INVALIDCREDENTIALSERROR);
+	}
+	@DataProvider(name="loginProvider") //testng provides annotation @DataProvider and we name it as "loginProvider".
+	public Object[][] getDataFromDataProvider() throws IOException //2DArray object is returned from method getDataFromDataProvider
+	{
+		return new Object[][] { new Object[] {"user","password"}, //2 parameters are passed: username and password. 3 sets of arrays are passed to improve Code Coverage.
+			new Object[] {"username","pass"},
+			new Object[] {"user1","password1"}
+		};
 	}
 	
 }

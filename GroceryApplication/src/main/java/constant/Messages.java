@@ -11,7 +11,4 @@ public class Messages {
 	public static final String SEARCHINSEARCHSECTIONERROR= "User fails to find the searched news item.";
 	public static final String RESETINSEARCHSECTIONERROR= "User fails to reset the news item.";
 	public static final String HOMELINKERROR= "User fails to navigate to Home Page by clicking Home link.";
-	//do the remaining 8
-	
-
 }
