@@ -4,14 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import utilities.PageUtility;
+import utilities.WaitUtility;
 
 public class ManageNewsPage {
 public WebDriver driver;
 PageUtility pageutility = new PageUtility();
+WaitUtility waitutility = new WaitUtility();
 public ManageNewsPage (WebDriver driver){
 		this.driver = driver;
+		PageFactory.initElements(driver, this); //this keyword in PageFactory helps to access the details of login in entire class
 }
 	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news'and @class='small-box-footer']") WebElement managenewstile;
 	public void clickManageNewsTile() {
@@ -23,6 +27,7 @@ public ManageNewsPage (WebDriver driver){
 	public void clickNewbutton() {
 		//WebElement newbutton = driver.findElement(By.xpath("//a[@class='btn btn-rounded btn-danger']"));
 		//newbutton.click();
+		waitutility.waitUntilClickable(driver, newbutton); //from WaitUtility. Confirm that it is clickable and wait for max of 5sec. Once element is confirmed to be clickable, next action will be executed.
 		pageutility.clickElement(newbutton);
 	}
 	@FindBy(xpath = "//textarea[@id='news']") WebElement newstextbox;

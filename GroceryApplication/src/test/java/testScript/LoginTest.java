@@ -1,16 +1,13 @@
 package testScript;
 
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import java.io.IOException;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import Base.TestNGBase; //imported TestNGBase because it is created in a different package
+import Pages.HomePage;
 import Pages.LoginPage;
 import constant.Constants;
 import constant.Messages;
@@ -18,15 +15,16 @@ import utilities.ExcelUtility;  //updated on moving "ExcelUtility" class from pa
 
 public class LoginTest extends TestNGBase {
 //Give username and password as admin -- Valid Credentials
+HomePage homepage; //HomePage declaration before testcase is done. But for object creation, space will be allocated. Here it is declared globally because, if needed, it can be used for multiple testcases below.	
 	@Test (priority = 1,description = "Login with valid credentials of user admin", retryAnalyzer = retry.Retry.class) //retryAnalyzer is given for flaky testcases to retry it. To test, we can give the row index as 3 instead of 1 below. 
 	public void verifyLoginWithValidCredentials() throws IOException {
 		String usernameValue=ExcelUtility.getStringData(1, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet
 		String passwordValue=ExcelUtility.getStringData(1, 1, Constants.LOGINSHEET);
 		
 		LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
-		loginpage.enterUserName(usernameValue);
-		loginpage.enterPassword(passwordValue);
-		loginpage.clickOnSignin();
+		loginpage.enterUserName(usernameValue).enterPassword(passwordValue); //Chaining of methods
+		homepage = loginpage.clickOnSignin();//Chaining of classes
+		//username and password are in same class LoginPage. But on clicking Signin button, next page "HomePage" is loaded. Hence it is added separately and not included in Chaining.
 //For assertion when the login action fails		
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin";
@@ -39,9 +37,7 @@ public class LoginTest extends TestNGBase {
 		String passwordValue=ExcelUtility.getStringData(2, 1, Constants.LOGINSHEET);
 		
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUserName(usernameValue);
-		loginpage.enterPassword(passwordValue);
-		loginpage.clickOnSignin();
+		loginpage.enterUserName(usernameValue).enterPassword(passwordValue).clickOnSignin(); //will be staying in the same LoginPage itself. Hence can be grouped together in Chaining.
 //Below Assertion can be done same as above also. With expected = "https://groceryapp.uniqassosiates.com/admin/login"
 		boolean isloginalertDisplayed = loginpage.isLoginAlertDisplayed();
 		Assert.assertTrue(isloginalertDisplayed, Messages.INVALIDPASSWORDERROR);
@@ -53,9 +49,7 @@ public class LoginTest extends TestNGBase {
 		String passwordValue=ExcelUtility.getStringData(3, 1, Constants.LOGINSHEET);
 		
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUserName(usernameValue);
-		loginpage.enterPassword(passwordValue);
-		loginpage.clickOnSignin();
+		loginpage.enterUserName(usernameValue).enterPassword(passwordValue).clickOnSignin();
 		boolean isloginalertDisplayed = loginpage.isLoginAlertDisplayed();
 		Assert.assertTrue(isloginalertDisplayed, Messages.INVALIDUSERNAMEERROR);		
 	}
@@ -66,9 +60,7 @@ public class LoginTest extends TestNGBase {
 		//String passwordValue=ExcelUtility.getStringData(4, 1, Constants.LOGINSHEET);
 		
 		LoginPage loginpage = new LoginPage(driver);
-		loginpage.enterUserName(usernameValue);
-		loginpage.enterPassword(passwordValue);
-		loginpage.clickOnSignin();
+		loginpage.enterUserName(usernameValue).enterPassword(passwordValue).clickOnSignin();
 		boolean isloginalertDisplayed = loginpage.isLoginAlertDisplayed();
 		Assert.assertTrue(isloginalertDisplayed, Messages.INVALIDCREDENTIALSERROR);
 	}
