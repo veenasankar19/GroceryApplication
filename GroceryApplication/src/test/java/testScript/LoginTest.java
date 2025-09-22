@@ -6,11 +6,11 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import Base.TestNGBase; //imported TestNGBase because it is created in a different package
-import Pages.HomePage;
-import Pages.LoginPage;
+import base.TestNGBase;
 import constant.Constants;
 import constant.Messages;
+import pages.HomePage;
+import pages.LoginPage;
 import utilities.ExcelUtility;  //updated on moving "ExcelUtility" class from package "testScript" in src test to "utilities" in src main
 
 public class LoginTest extends TestNGBase {

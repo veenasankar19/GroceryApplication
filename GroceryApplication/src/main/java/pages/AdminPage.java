@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,29 +19,22 @@ public AdminPage(WebDriver driver) {
 //clickAdminMoreInfo() is moved to HomePage
 	@FindBy (xpath = "//a[@class='btn btn-rounded btn-danger']") WebElement newButton;
 	public AdminPage clickNewButton() {
-		//WebElement newButton = driver.findElement(By.xpath("//a[@class='btn btn-rounded btn-danger']")); //clicking New Button
-		//newButton.click();
 		waitutility.waitUntilClickable(driver, newButton); //WaitUtility only added for 1 testcase in this class
 		pageutility.clickElement(newButton);
 		return this;
 	}
 	@FindBy (xpath = "//input[@id='username']") WebElement usernamefield;
 	public AdminPage enterUsernameField(String randomname) {
-		//WebElement usernamefield = driver.findElement(By.xpath("//input[@id='username']"));
-		//usernamefield.sendKeys(randomname); //take a username randomly from faker Utility
 		pageutility.sendDataToElement(usernamefield, randomname); //sendDataToElement is the name in PageUtility class
 		return this;
 	}
 	@FindBy (xpath = "//input[@id='password']") WebElement passwordfield;
 	public AdminPage enterPasswordField(String randompassword) {
-		//WebElement passwordfield = driver.findElement(By.xpath("//input[@id='password']"));
-		//passwordfield.sendKeys(randompassword);
 		pageutility.sendDataToElement(passwordfield, randompassword); //sendDataToElement is the name in PageUtility class
 		return this;
 	}
 	@FindBy (xpath = "//select[@id='user_type']") WebElement usertype;
 	public AdminPage chooseUserType(String userTypeValue) {
-		//WebElement usertype = driver.findElement(By.xpath("//select[@id='user_type']"));
 		/*Select select=new Select(usertype); //Predefined class Select is used to select usertype value
 		select.selectByVisibleText(userTypeValue);*/
 		pageutility.selectDataWithVisibleText(usertype, userTypeValue);
@@ -49,8 +42,6 @@ public AdminPage(WebDriver driver) {
 	}
 	@FindBy (xpath = "//button[@name='Create']") WebElement savebutton;
 	public AdminPage clickSaveButton() {
-		//WebElement savebutton=driver.findElement(By.xpath("//button[@name='Create']"));
-		//savebutton.click();
 		pageutility.clickElement(savebutton);
 		return this;
 	}

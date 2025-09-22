@@ -1,4 +1,4 @@
-package Base;
+package base;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -66,7 +66,5 @@ else {
 			screenShot.getScreenshot(driver, iTestResult.getName());
 		}
 		driver.quit();
-
 	}
-
 }

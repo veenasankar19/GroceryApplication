@@ -5,11 +5,11 @@ import java.io.IOException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import Base.TestNGBase;
-import Pages.HomePage;
-import Pages.LoginPage;
+import base.TestNGBase;
 import constant.Constants;
 import constant.Messages;
+import pages.HomePage;
+import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class HomeTest extends TestNGBase {

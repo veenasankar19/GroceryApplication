@@ -39,10 +39,8 @@ public class Listener implements ITestListener { //Listener class is for passing
 	}
 
 	public void onTestSuccess(ITestResult result) {
-
 		ITestListener.super.onTestSuccess(result);
 		extentTest.get().log(Status.PASS, "Test Passed");
-
 	}
 	/*
 	 * @Override public void onTestFailure(ITestResult result) { // Mark the test as
@@ -74,12 +72,9 @@ public class Listener implements ITestListener { //Listener class is for passing
 	  result.getTestClass().getRealClass().getDeclaredField("driver")
 	  .get(result.getInstance()); } catch (IllegalArgumentException e) {
 	  
-	  e.printStackTrace(); } catch (IllegalAccessException e) {
-	  
-	  e.printStackTrace(); } catch (NoSuchFieldException e) {
-	  
-	  e.printStackTrace(); } catch (SecurityException e) {
-	  
+	  e.printStackTrace(); } catch (IllegalAccessException e) {	  
+	  e.printStackTrace(); } catch (NoSuchFieldException e) {	  
+	  e.printStackTrace(); } catch (SecurityException e) {	  
 	  e.printStackTrace(); }
 	  
 	  try { driver = (WebDriver)
@@ -92,28 +87,18 @@ public class Listener implements ITestListener { //Listener class is for passing
 		ITestListener.super.onTestSkipped(result);
 		extentTest.get().log(Status.SKIP, "Test Skipped");
 		String testMethodName = result.getMethod().getMethodName();
-
 	}
-
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
 		ITestListener.super.onTestFailedButWithinSuccessPercentage(result);
 	}
-
 	public void onTestFailedWithTimeout(ITestResult result) {
-
 		ITestListener.super.onTestFailedWithTimeout(result);
 	}
-
 	public void onStart(ITestContext context) {
-
 		ITestListener.super.onStart(context);
 	}
-
 	public void onFinish(ITestContext context) {
-
 		ITestListener.super.onFinish(context);
 		extent.flush(); //all retrieved items to object extent will be flushed to report by the method flush
 	}
-
 }

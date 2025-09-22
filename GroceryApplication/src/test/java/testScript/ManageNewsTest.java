@@ -2,17 +2,19 @@ package testScript;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import base.TestNGBase;
+
 import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-import Base.TestNGBase;
-import Pages.LoginPage;
-import Pages.ManageNewsPage;
 import constant.Constants;
 import constant.Messages;
+import pages.LoginPage;
+import pages.ManageNewsPage;
 import utilities.ExcelUtility;
 
 public class ManageNewsTest extends TestNGBase{
