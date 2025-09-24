@@ -13,27 +13,27 @@ import org.testng.annotations.Test;
 
 import constant.Constants;
 import constant.Messages;
+import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageNewsPage;
 import utilities.ExcelUtility;
 
 public class ManageNewsTest extends TestNGBase{
 //TestCase5 to navigate to Manage News page, click on New button and perform related actions 
+HomePage homepage; //HomePage declaration before testcase is done.
+ManageNewsPage managenewspage;
 	@Test (description = "Verify Add News")
 	public void verifyAddNews() throws IOException {
 		String usernameValue=ExcelUtility.getStringData(6, 0, Constants.LOGINSHEET);  //Data Driven Approach to fetch data from Excel sheet and Path&Sheetname from Constants class
 		String passwordValue=ExcelUtility.getStringData(6, 1, Constants.LOGINSHEET);
 	
 		LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
-		loginpage.enterUserName(usernameValue);
-		loginpage.enterPassword(passwordValue);
-		loginpage.clickOnSignin();
+		loginpage.enterUserName(usernameValue).enterPassword(passwordValue); //Chaining of methods 
+		homepage = loginpage.clickOnSignin();
 	
-		ManageNewsPage managenewspage = new ManageNewsPage(driver);
-		managenewspage.clickManageNewsTile();
-		managenewspage.clickNewbutton();
-		managenewspage.enterNewsTextbox();
-		managenewspage.clickSaveButton();
+		managenewspage = homepage.clickManageNewsTile();
+		managenewspage.clickNewbutton().enterNewsTextbox().clickSaveButton();
+
 //Adding Assertion		
 		boolean isaddnewsAlertDisplayed = managenewspage.isAddNewsAlertDisplayed();
 		Assert.assertTrue(isaddnewsAlertDisplayed, Messages.ADDNEWSERROR); //Message is added in Messages class
@@ -45,15 +45,12 @@ public class ManageNewsTest extends TestNGBase{
 		String passwordValue=ExcelUtility.getStringData(6, 1, Constants.LOGINSHEET);
 	
 		LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
-		loginpage.enterUserName(usernameValue);
-		loginpage.enterPassword(passwordValue);
-		loginpage.clickOnSignin();
+		loginpage.enterUserName(usernameValue).enterPassword(passwordValue);
+		homepage= loginpage.clickOnSignin();
  		
-		ManageNewsPage managenewspage = new ManageNewsPage(driver);
-		managenewspage.clickManageNewsTile();
-		managenewspage.clickSearchButtonBlue();
-		managenewspage.enterNewsTextboxInsideSearch();
-		managenewspage.clickSearchButtonRed();
+		managenewspage = homepage.clickManageNewsTile();
+		managenewspage.clickSearchButtonBlue().enterNewsTextboxInsideSearch().clickSearchButtonRed();
+
 //Adding Assertion	
 		String actual = managenewspage.isSearchedNewsFoundinTable();
 		String expected = "This is an updated news";
@@ -67,15 +64,11 @@ public class ManageNewsTest extends TestNGBase{
 			String passwordValue=ExcelUtility.getStringData(6, 1, Constants.LOGINSHEET);
 		
 			LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
-			loginpage.enterUserName(usernameValue);
-			loginpage.enterPassword(passwordValue);
-			loginpage.clickOnSignin();
+			loginpage.enterUserName(usernameValue).enterPassword(passwordValue);
+			homepage= loginpage.clickOnSignin();
 	 		
-			ManageNewsPage managenewspage = new ManageNewsPage(driver);
-			managenewspage.clickManageNewsTile();
-			managenewspage.clickSearchButtonBlue();
-			managenewspage.enterNewsTextboxInsideSearch();
-			managenewspage.clickResetButtonGrey();
+			managenewspage = homepage.clickManageNewsTile();
+			managenewspage.clickSearchButtonBlue().enterNewsTextboxInsideSearch().clickResetButtonGrey();
 //Adding Assertion	
 			boolean iseditManageNewsInformations = managenewspage.isSearchManageNews();
 			Assert.assertFalse(iseditManageNewsInformations, Messages.RESETINSEARCHSECTIONERROR);
@@ -88,13 +81,11 @@ public class ManageNewsTest extends TestNGBase{
 		String passwordValue=ExcelUtility.getStringData(6, 1, Constants.LOGINSHEET);
 	
 		LoginPage loginpage = new LoginPage(driver); //Page Object Model where the code is taken from src/main/java in LoginPage class
-		loginpage.enterUserName(usernameValue);
-		loginpage.enterPassword(passwordValue);
-		loginpage.clickOnSignin();
+		loginpage.enterUserName(usernameValue).enterPassword(passwordValue);
+		homepage= loginpage.clickOnSignin();
  		
-		ManageNewsPage managenewspage = new ManageNewsPage(driver);
-		managenewspage.clickManageNewsTile();
-		managenewspage.clickHomeLink();
+		managenewspage=homepage.clickManageNewsTile();
+		homepage=managenewspage.clickHomeLink();
 //Adding Assertion			
 		String actual = driver.getCurrentUrl();
 		String expected = "https://groceryapp.uniqassosiates.com/admin/home";

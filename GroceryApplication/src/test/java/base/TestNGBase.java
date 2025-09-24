@@ -33,7 +33,7 @@ public class TestNGBase {
 		prop.load(f); //load method will extract the data of properties file
 		if(browser.equalsIgnoreCase("Chrome")) { //for Chrome browser if browser value in testng is "Chrome"
 			//driver=new ChromeDriver();
-			ChromeOptions options = new ChromeOptions();
+			ChromeOptions options = new ChromeOptions();// handle passord leak protection popup
 			Map<String,Object> prefs=new HashMap<>();
 			prefs.put("profile.password_manager_leak_detection", false);
 			options.setExperimentalOption("prefs", prefs);

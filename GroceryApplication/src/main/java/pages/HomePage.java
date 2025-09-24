@@ -27,11 +27,17 @@ public class HomePage {
 		pageutility.clickElement(logOut);
 		return new LoginPage(driver);
 	}
-	//Cut clickAdminMoreInfo() method from AdminPage and pasted here
+	//Cut clickAdminMoreInfo() method from AdminPage and pasted here for Chaining
 	@FindBy (xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-admin' and @class='small-box-footer']") WebElement adminMoreInfo;
 	public AdminPage clickAdminMoreInfo() {
 		pageutility.clickElement(adminMoreInfo);//from PageUtility class
 		return new AdminPage(driver);
+	}
+	//Cut clickManageNewsTile method (to click on the manage news tile ) from ManageNewsPage  and pasted here for Chaining
+	@FindBy(xpath = "//a[@href='https://groceryapp.uniqassosiates.com/admin/list-news'and @class='small-box-footer']") WebElement managenewstile;
+	public ManageNewsPage clickManageNewsTile() {
+		pageutility.clickElement(managenewstile);
+		return new ManageNewsPage(driver);
 	}
 
 }
